@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>学科信息</title>
+   <style>
+       #container {
+           width: 80%;
+           margin: 10px auto;
+       }
+       .user {
+           float: right;
+           margin-right: 10px;
+       }
+       .user>a {
+           margin-right: 10px;
+       }
+       #main>dl>dt {
+           font-size: 1.5em;
+           font-weight: bold;
+       }
+       #main>dl>dd {
+           font-size: 1.2em;
+       }
+       a {
+           text-decoration: none;
+           color: darkcyan;
+       }
+       img {
+           width: 20px;
+           height: 20px;
+       }
+   </style>
+</head>
+<body>
+
+   <div id="container">
+       {% include 'header.html' %}
+       <h1>网络在线课堂所有学科信息</h1>
+       <hr>
+       <div id="main">
+           {% for subject in subjects %}
+           <dl>
+               <dt>
+                   <a href="/teachers/?sno={{ subject.no }}">{{ subject.name }}</a>
+                   {% if subject.is_hot %}
+                   <img src="/static/images/hot.jpg">
+                   {% endif %}
+               </dt>
+               <dd>课程简介：{{ subject.intro }}</dd>
+           </dl>
+           {% endfor %}
+           <a href="/echarts">echarts视图</a>
+       </div>
+   </div>
+</body>
+</html>
